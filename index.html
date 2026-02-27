@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KodNest Premium Build System - Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN SYSTEM: KodNest Premium Build System
+           Philosophy: Calm, Intentional, Coherent, Confident
+           ============================================ */
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* === COLOR SYSTEM === */
+        :root {
+            --color-background: #F7F6F3;
+            --color-primary-text: #111111;
+            --color-accent: #8B0000;
+            --color-success: #2D5016;
+            --color-warning: #8B6914;
+            
+            /* Utility colors */
+            --color-border: #D4D2CC;
+            --color-surface: #FFFFFF;
+            --color-muted-text: #666666;
+        }
+
+        /* === TYPOGRAPHY SYSTEM === */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-primary-text);
+            background-color: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .heading-xl {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .heading-lg {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .heading-md {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .heading-sm {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .body-lg {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 720px;
+        }
+
+        .body-md {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .body-sm {
+            font-size: 14px;
+            line-height: 1.5;
+            max-width: 720px;
+        }
+
+        /* Ensure all paragraph text respects max-width */
+        p {
+            max-width: 720px;
+        }
+
+        /* === SPACING SYSTEM === */
+        .space-8 { padding: 8px; }
+        .space-16 { padding: 16px; }
+        .space-24 { padding: 24px; }
+        .space-40 { padding: 40px; }
+        .space-64 { padding: 64px; }
+
+        .gap-8 { gap: 8px; }
+        .gap-16 { gap: 16px; }
+        .gap-24 { gap: 24px; }
+        .gap-40 { gap: 40px; }
+        .gap-64 { gap: 64px; }
+
+        /* === LAYOUT STRUCTURE === */
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar__project {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .top-bar__progress {
+            font-size: 14px;
+            color: var(--color-muted-text);
+        }
+
+        .top-bar__status {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+        }
+
+        .top-bar__status--not-started {
+            color: var(--color-muted-text);
+        }
+
+        .top-bar__status--in-progress {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .top-bar__status--shipped {
+            color: var(--color-success);
+            border-color: var(--color-success);
+        }
+
+        /* Context Header */
+        .context-header {
+            padding: 64px 40px 40px 40px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .context-header__headline {
+            margin-bottom: 16px;
+        }
+
+        .context-header__subtext {
+            color: var(--color-muted-text);
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px 64px 40px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+
+        /* Primary Workspace */
+        .primary-workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Secondary Panel */
+        .secondary-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: sticky;
+            top: 64px;
+            align-self: start;
+        }
+
+        /* Proof Footer */
+        .proof-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 24px 40px;
+            z-index: 100;
+        }
+
+        .proof-footer__checklist {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .proof-footer__item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .proof-footer__checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+        }
+
+        .proof-footer__checkbox:hover {
+            border-color: var(--color-accent);
+        }
+
+        .proof-footer__checkbox--checked {
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+            color: white;
+        }
+
+        /* === COMPONENT LIBRARY === */
+
+        /* Card */
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .card--large {
+            padding: 40px;
+        }
+
+        .card__header {
+            margin-bottom: 16px;
+        }
+
+        .card__title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card__description {
+            color: var(--color-muted-text);
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .button {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .button--primary {
+            background-color: var(--color-accent);
+            color: white;
+        }
+
+        .button--primary:hover {
+            background-color: #6D0000;
+        }
+
+        .button--secondary {
+            background-color: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-primary-text);
+        }
+
+        .button--secondary:hover {
+            border-color: var(--color-primary-text);
+        }
+
+        .button--small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .button--full-width {
+            width: 100%;
+        }
+
+        /* Input */
+        .input {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: var(--color-surface);
+            color: var(--color-primary-text);
+            transition: all 150ms ease-in-out;
+            width: 100%;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .input::placeholder {
+            color: var(--color-muted-text);
+        }
+
+        /* Textarea */
+        .textarea {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: var(--color-surface);
+            color: var(--color-primary-text);
+            transition: all 150ms ease-in-out;
+            width: 100%;
+            resize: vertical;
+            min-height: 128px;
+            line-height: 1.6;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        /* Code Block */
+        .code-block {
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .code-block__label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-muted-text);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .badge--success {
+            color: var(--color-success);
+            border-color: var(--color-success);
+            background-color: rgba(45, 80, 22, 0.05);
+        }
+
+        .badge--warning {
+            color: var(--color-warning);
+            border-color: var(--color-warning);
+            background-color: rgba(139, 105, 20, 0.05);
+        }
+
+        .badge--error {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background-color: rgba(139, 0, 0, 0.05);
+        }
+
+        /* Step Panel */
+        .step-panel {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .step-panel__title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .step-panel__description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--color-muted-text);
+            margin-bottom: 24px;
+        }
+
+        .step-panel__actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Error State */
+        .error-state {
+            background-color: rgba(139, 0, 0, 0.05);
+            border: 1px solid var(--color-accent);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .error-state__title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-accent);
+        }
+
+        .error-state__message {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .error-state__action {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-accent);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+        }
+
+        .empty-state__title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--color-muted-text);
+        }
+
+        .empty-state__description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-muted-text);
+            margin-bottom: 24px;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background-color: var(--color-border);
+            margin: 24px 0;
+        }
+
+        /* Form Group */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .form-group__label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary-text);
+        }
+
+        .form-group__hint {
+            font-size: 14px;
+            color: var(--color-muted-text);
+        }
+
+        /* === UTILITY CLASSES === */
+        .text-muted {
+            color: var(--color-muted-text);
+        }
+
+        .text-accent {
+            color: var(--color-accent);
+        }
+
+        .text-success {
+            color: var(--color-success);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .mb-8 { margin-bottom: 8px; }
+        .mb-16 { margin-bottom: 16px; }
+        .mb-24 { margin-bottom: 24px; }
+        .mb-40 { margin-bottom: 40px; }
+        .mb-64 { margin-bottom: 64px; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .secondary-panel {
+                position: static;
+            }
+
+            .proof-footer__checklist {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .top-bar {
+                padding: 16px 24px;
+            }
+
+            .context-header {
+                padding: 40px 24px 24px 24px;
+            }
+
+            .heading-xl {
+                font-size: 36px;
+            }
+
+            .heading-lg {
+                font-size: 28px;
+            }
+
+            .main-container {
+                padding: 0 24px 64px 24px;
+            }
+
+            .proof-footer {
+                padding: 16px 24px;
+            }
+
+            .proof-footer__checklist {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* === DEMO STYLES === */
+        .demo-section {
+            margin-bottom: 64px;
+        }
+
+        .demo-section__title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .component-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .component-example {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .component-example__label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-muted-text);
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar__project">Design System Documentation</div>
+        <div class="top-bar__progress">Component Library</div>
+        <div class="top-bar__status top-bar__status--shipped">Reference</div>
+    </div>
+
+    <!-- CONTEXT HEADER -->
+    <div class="context-header">
+        <h1 class="heading-xl context-header__headline">KodNest Premium Build System</h1>
+        <p class="context-header__subtext">A calm, intentional design system for serious B2C product companies. Every component follows consistent spacing, typography, and interaction patterns.</p>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <!-- PRIMARY WORKSPACE -->
+        <div class="primary-workspace">
+            
+            <!-- Color System -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Color System</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Primary Colors</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                            <div>
+                                <div style="width: 100%; height: 80px; background-color: #F7F6F3; border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="body-sm"><strong>Background</strong></div>
+                                <div class="body-sm text-muted">#F7F6F3</div>
+                            </div>
+                            <div>
+                                <div style="width: 100%; height: 80px; background-color: #111111; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="body-sm"><strong>Primary Text</strong></div>
+                                <div class="body-sm text-muted">#111111</div>
+                            </div>
+                            <div>
+                                <div style="width: 100%; height: 80px; background-color: #8B0000; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="body-sm"><strong>Accent</strong></div>
+                                <div class="body-sm text-muted">#8B0000</div>
+                            </div>
+                            <div>
+                                <div style="width: 100%; height: 80px; background-color: #2D5016; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="body-sm"><strong>Success</strong></div>
+                                <div class="body-sm text-muted">#2D5016</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Typography</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Headings - Crimson Pro</div>
+                        <h1 class="heading-xl mb-24">Extra Large Heading</h1>
+                        <h2 class="heading-lg mb-24">Large Heading</h2>
+                        <h3 class="heading-md mb-24">Medium Heading</h3>
+                        <h4 class="heading-sm">Small Heading</h4>
+                    </div>
+                    <div class="component-example">
+                        <div class="component-example__label">Body Text - Inter</div>
+                        <p class="body-lg mb-16">Large body text for important introductions and featured content. Maximum width of 720px ensures comfortable reading.</p>
+                        <p class="body-md mb-16">Medium body text for standard content and descriptions. This is the default text size throughout the system.</p>
+                        <p class="body-sm">Small body text for metadata, captions, and secondary information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spacing System -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Spacing System</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Consistent Scale: 8, 16, 24, 40, 64</div>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 8px; height: 40px; background-color: var(--color-accent);"></div>
+                                <span class="body-sm">8px</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 16px; height: 40px; background-color: var(--color-accent);"></div>
+                                <span class="body-sm">16px</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 24px; height: 40px; background-color: var(--color-accent);"></div>
+                                <span class="body-sm">24px</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 40px; height: 40px; background-color: var(--color-accent);"></div>
+                                <span class="body-sm">40px</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 64px; height: 40px; background-color: var(--color-accent);"></div>
+                                <span class="body-sm">64px</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Buttons</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Primary & Secondary</div>
+                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                            <button class="button button--primary">Primary Button</button>
+                            <button class="button button--secondary">Secondary Button</button>
+                            <button class="button button--primary button--small">Small Primary</button>
+                            <button class="button button--secondary button--small">Small Secondary</button>
+                        </div>
+                    </div>
+                    <div class="component-example">
+                        <div class="component-example__label">Full Width</div>
+                        <button class="button button--primary button--full-width">Full Width Button</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inputs -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Form Controls</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Text Input</div>
+                        <div class="form-group">
+                            <label class="form-group__label">Project Name</label>
+                            <input type="text" class="input" placeholder="Enter project name">
+                            <span class="form-group__hint">Choose a clear, descriptive name</span>
+                        </div>
+                    </div>
+                    <div class="component-example">
+                        <div class="component-example__label">Textarea</div>
+                        <div class="form-group">
+                            <label class="form-group__label">Description</label>
+                            <textarea class="textarea" placeholder="Describe your project"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Cards</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Standard Card</div>
+                        <div class="card">
+                            <div class="card__header">
+                                <h3 class="card__title">Card Title</h3>
+                                <p class="card__description">Brief description of card content</p>
+                            </div>
+                            <p class="body-md">Card content goes here. Subtle border, no shadows, balanced padding following the spacing system.</p>
+                        </div>
+                    </div>
+                    <div class="component-example">
+                        <div class="component-example__label">Large Card</div>
+                        <div class="card card--large">
+                            <div class="card__header">
+                                <h3 class="card__title">Large Card Title</h3>
+                                <p class="card__description">More generous padding for featured content</p>
+                            </div>
+                            <p class="body-md">Large cards use 40px padding instead of 24px for more prominent content sections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Badges</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Status Badges</div>
+                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                            <span class="badge badge--success">Success</span>
+                            <span class="badge badge--warning">Warning</span>
+                            <span class="badge badge--error">Error</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Block -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Code Block</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="component-example__label">Copyable Prompt Box</div>
+                        <div class="code-block">
+                            <div class="code-block__header">
+                                <span class="code-block__label">Prompt</span>
+                                <button class="button button--secondary button--small">Copy</button>
+                            </div>
+                            <pre>Create a landing page with a hero section,
+feature cards, and a contact form.</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Empty State</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="empty-state">
+                            <h3 class="empty-state__title">No Projects Yet</h3>
+                            <p class="empty-state__description">Start by creating your first project. It only takes a minute.</p>
+                            <button class="button button--primary">Create Project</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div class="demo-section">
+                <h2 class="demo-section__title">Error State</h2>
+                <div class="component-showcase">
+                    <div class="component-example">
+                        <div class="error-state">
+                            <h4 class="error-state__title">Connection Failed</h4>
+                            <p class="error-state__message">We couldn't connect to the build service. This usually happens when the network connection is unstable.</p>
+                            <a href="#" class="error-state__action">Try again →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECONDARY PANEL -->
+        <div class="secondary-panel">
+            <div class="step-panel">
+                <h3 class="step-panel__title">Design System Guide</h3>
+                <p class="step-panel__description">This design system provides all components needed to build the KodNest Premium Build System. Every element follows the calm, intentional design philosophy.</p>
+                <div class="divider"></div>
+                <h4 class="heading-sm mb-16">Key Principles</h4>
+                <ul style="font-size: 14px; line-height: 1.8; color: var(--color-muted-text); padding-left: 24px;">
+                    <li>Use only spacing values from the scale</li>
+                    <li>Maximum 4 colors across entire system</li>
+                    <li>Serif for headings, sans-serif for body</li>
+                    <li>150-200ms transitions, ease-in-out</li>
+                    <li>No gradients, no glassmorphism, no neon</li>
+                </ul>
+            </div>
+
+            <div class="step-panel">
+                <h3 class="step-panel__title">Layout Structure</h3>
+                <p class="step-panel__description">Every page follows this structure:</p>
+                <div style="font-size: 14px; line-height: 2; color: var(--color-primary-text); font-family: 'Monaco', monospace;">
+                    [Top Bar]<br>
+                    ↓<br>
+                    [Context Header]<br>
+                    ↓<br>
+                    [Primary Workspace + Secondary Panel]<br>
+                    ↓<br>
+                    [Proof Footer]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROOF FOOTER -->
+    <div class="proof-footer">
+        <div class="proof-footer__checklist">
+            <div class="proof-footer__item">
+                <div class="proof-footer__checkbox">□</div>
+                <span>Colors Verified</span>
+            </div>
+            <div class="proof-footer__item">
+                <div class="proof-footer__checkbox">□</div>
+                <span>Typography Set</span>
+            </div>
+            <div class="proof-footer__item">
+                <div class="proof-footer__checkbox">□</div>
+                <span>Spacing Consistent</span>
+            </div>
+            <div class="proof-footer__item">
+                <div class="proof-footer__checkbox">□</div>
+                <span>Components Ready</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

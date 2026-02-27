@@ -1,0 +1,11 @@
+{
+  "name": "Route-Skeleton",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix \"../SAAS\" run dev",
+    "build": "npm --prefix \"../SAAS\" run build",
+    "preview": "npm --prefix \"../SAAS\" run preview",
+    "install:app": "npm --prefix \"../SAAS\" install"
+  }
+}
+
